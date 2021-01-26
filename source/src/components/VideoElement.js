@@ -5,6 +5,8 @@ export default defineComponent({
   name: "VideoElement",
   props: ["url"],
   mounted() {
-    new JSMpeg.VideoElement("#videoWrapper", this.url);
+    this.player = new JSMpeg.VideoElement("#videoWrapper", this.url, {
+      autoplay: true,
+    });
   },
 });

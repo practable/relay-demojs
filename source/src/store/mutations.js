@@ -1,5 +1,5 @@
 export const deleteStreams = (state) => {
-  state.streams = "";
+  state.streams = {};
   state.streamsObtained = false;
 };
 export const setStreams = (state, streams) => {
