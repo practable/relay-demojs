@@ -1,13 +1,6 @@
 <template>
-
-<p> da: {{ da }} </p>
-<p> dt: {{ dt }} </p>
-<p> va: {{ va }} </p>
-<p> vt: {{ vt }} </p>
-<p> dw: {{ dw }} </p>
-<p> vw: {{ vw }} </p>
-
-<display-connections/>
+<h1> Connection diagnostics </h1>
+<display-connections :streams="decodedStreams"/>
 
 </template> 
 

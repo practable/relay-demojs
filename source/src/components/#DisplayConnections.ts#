@@ -7,4 +7,9 @@ export default defineComponent({
   components: {
     "display-connection": DisplayConnection,
   },
+	computed: {
+
+		stream: function () :streamType {
+		
+	}
 });

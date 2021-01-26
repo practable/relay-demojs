@@ -11,23 +11,8 @@ export default defineComponent({
     id: function (): string | string[] {
       return this.$route.params.id;
     },
-    da: function (): string {
-      return String(this.$route.query.da);
-    },
-    dt: function (): string {
-      return String(this.$route.query.dt);
-    },
-    va: function (): string {
-      return String(this.$route.query.va);
-    },
-    vt: function (): string {
-      return String(this.$route.query.vt);
-    },
-    dw: function (): string {
-      return String(this.$route.query.dw);
-    },
-    vw: function (): string {
-      return String(this.$route.query.vw);
+    decodedStreams: function (): object {
+      return JSON.parse(decodeURIComponent(String(this.$route.query.streams)));
     },
   },
   watch: {

@@ -1,7 +1,11 @@
 <template>
-  Display connections will be here!
-  <display-connection :access="da" :token="dt"/>
-  <display-connection :access="va" :token="vt"/>
+   <display-connection
+  v-for="(item, index) in streams"
+  :stream="item"
+  :index="index"
+  :key="item.for"
+	 ></display-connection>
+
   
 </template>
 
