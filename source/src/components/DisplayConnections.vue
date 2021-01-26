@@ -2,7 +2,6 @@
    <display-connection
   v-for="(item, index) in streams"
   :stream="item"
-  :index="index"
   :key="item.for"
 	 ></display-connection>
 

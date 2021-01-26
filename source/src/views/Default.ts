@@ -1,5 +1,4 @@
 import DisplayConnections from "../components/DisplayConnections.vue";
-import { mapGetters } from "vuex";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -12,8 +11,34 @@ export default defineComponent({
       return this.$route.params.id;
     },
     decodedStreams: function (): object {
-      return JSON.parse(decodeURIComponent(String(this.$route.query.streams)));
+      try {
+        return JSON.parse(
+          decodeURIComponent(String(this.$route.query.streams))
+        );
+      } catch (e) {
+        console.log("error decoding streams");
+        return {};
+      }
     },
+    streams: function (): object {
+      return this.$store.getters.getStreams;
+    },
+
+    streamsObtained: function (): boolean {
+      return this.$store.getters.getStreamsObtained;
+    },
+  },
+  mounted() {
+    try {
+      var decodedStreams = JSON.parse(
+        decodeURIComponent(String(this.$route.query.streams))
+      );
+
+      this.$store.commit("setStreams", decodedStreams);
+    } catch (e) {
+      console.log("error decoding streams");
+      this.$store.commit("deleteStreams");
+    }
   },
   watch: {
     $route(to, from) {

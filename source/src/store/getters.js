@@ -1,20 +1,14 @@
-export const bearer = (state) => state.bearer;
-
-export const bookingToken = (state) => state.bookingToken;
-export const bookingTokenValid = (state) => state.bookingTokenValid;
-export const loginResult = (state) => state.loginResult;
-export const bookingTokenStatus = (state) => state.bookingTokenStatus;
-export const bookingTokenExpiresAt = (state) => state.bookingTokenExpiresAt;
-
-export const getBookingByID = (state, id) => {
-  return (id) => {
-    var results = state.activityBookings.filter((obj) => {
-      return obj.id === id;
+export const getStreamsObtained = (state) => state.streamsObtained;
+export const getStreams = (state) => state.streams;
+export const getStream = (state, what) => {
+  return (what) => {
+    var results = state.streams.filter((obj) => {
+      return obj.for === what;
     });
     if (results.length < 1) {
       return {};
     } else {
-      return results[0].status;
+      return results[0];
     }
   };
 };
