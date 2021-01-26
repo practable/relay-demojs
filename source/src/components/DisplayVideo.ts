@@ -34,7 +34,8 @@ export default defineComponent({
       }
     },
     url: function (): string {
-      var url = "https://tsduck.io/streams/usa-atsc/473.ts";
+      var url =
+        "https://cycjimmy.github.io/staticFiles/media/big_buck_bunny_640x360.ts";
       return url;
     },
   },

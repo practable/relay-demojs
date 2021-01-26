@@ -2,7 +2,7 @@
 
 <h1> Video:  {{ topic }} </h1>
 <div>
-<video-element/>
+<video-element :url="url"/>
 </div>
 {{ url }}
 </template>
