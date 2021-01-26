@@ -3,7 +3,7 @@ export const getStreams = (state) => state.streams;
 export const getStream = (state, what) => {
   return (what) => {
     var results = state.streams.filter((obj) => {
-      return obj.for === what;
+      return obj.for == what;
     });
     if (results.length < 1) {
       return {};

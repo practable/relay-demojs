@@ -1,10 +1,12 @@
 import DisplayConnections from "../components/DisplayConnections.vue";
+import DisplayVideo from "../components/DisplayVideo.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Activity",
   components: {
     "display-connections": DisplayConnections,
+    "display-video": DisplayVideo,
   },
   computed: {
     id: function (): string | string[] {
@@ -16,6 +18,9 @@ export default defineComponent({
 
     streamsObtained: function (): boolean {
       return this.$store.getters.getStreamsObtained;
+    },
+    videoStream: function (): object {
+      return this.$store.getters.getStream("video");
     },
   },
   mounted() {
