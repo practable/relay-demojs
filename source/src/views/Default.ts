@@ -11,16 +11,6 @@ export default defineComponent({
       return this.$route.params.id;
     },
     decodedStreams: function (): object {
-      try {
-        return JSON.parse(
-          decodeURIComponent(String(this.$route.query.streams))
-        );
-      } catch (e) {
-        console.log("error decoding streams");
-        return {};
-      }
-    },
-    streams: function (): object {
       return this.$store.getters.getStreams;
     },
 
@@ -29,6 +19,9 @@ export default defineComponent({
     },
   },
   mounted() {
+    if (this.streamsObtained) {
+      return;
+    }
     try {
       var decodedStreams = JSON.parse(
         decodeURIComponent(String(this.$route.query.streams))
