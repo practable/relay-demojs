@@ -5,7 +5,11 @@ import * as mutations from "./mutations";
 
 const state = {
   streams: [],
-  streamObtained: false,
+  streamsObtained: false,
+  videoURL: "",
+  videoURLObtained: false,
+  dataURL: "",
+  dataURLObtained: false,
 };
 
 const store = createStore({

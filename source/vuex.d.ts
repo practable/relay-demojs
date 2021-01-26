@@ -6,7 +6,11 @@ declare module "@vue/runtime-core" {
   // declare your own store states
   interface State {
     streams: [];
-    streamObtained: false;
+    streamsObtained: false;
+    videoURL: "";
+    videoURLObtained: false;
+    dataURL: "";
+    dataURLObtained: false;
   }
 
   // provide typings for `this.$store`

@@ -7,6 +7,7 @@ export default defineComponent({
   mounted() {
     this.player = new JSMpeg.VideoElement("#videoWrapper", this.url, {
       autoplay: true,
+      chunkSize: 10 * 1024 * 1024,
     });
   },
 });
