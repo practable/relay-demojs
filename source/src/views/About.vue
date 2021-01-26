@@ -3,12 +3,8 @@
 
 <h1>About</h1>
 
-<p> This is a proof-of-concept booking system for developers and course staff to explore the activities in their current state of development. Further refinements are expected, including the addition of features and minor/cosmetic changes to existing features. Expect changes in the way that you authenticate to the system, to make it more convenient than present.</p>
+<p> This is a diagnostic interface to show developers what information the booking system has passed to their user interface. User interfaces typically require to connect to video and data streams, using authentication, with time limits and with different read/write scopes. If this page is working, but your user interface for same piece of hardware is not, then check again your implementation of the stream decoding, and (re)connection process, using this page as an example. Note that this interface implements both store and router to mimic a typical interface, placing the query params in the store upon loading, so that when using the router to navigate between pages, the streams information is not lost.</p>
 
-<h2> Authentication </h2>
-<p>
-  Please enter the token you have been given into the text box on the <a href="/login">catalogue</a> page.
-</p>
 </div>
 
 </template> 
