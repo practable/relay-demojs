@@ -23,3 +23,12 @@ export const deleteDataURL = (state, url) => {
   state.dataURL = "";
   state.dataURLObtained = false;
 };
+
+export const deleteExpiry = (state) => {
+  state.expiry = -1;
+  state.expiryObtained = false;
+};
+export const setExpiry = (state, expiry) => {
+  state.expiry = expiry;
+  state.expiryObtained = true;
+};

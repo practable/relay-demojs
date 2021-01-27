@@ -1,7 +1,8 @@
 <template>
   <div class="row">
 	<div class="col">
-      <h1> Connection diagnostics </h1>
+     <h1> Connection diagnostics </h1>
+      <display-expiry :exp="exp"/>
       <display-connections :streams="decodedStreams"/>
     </div>
     <div class="col">

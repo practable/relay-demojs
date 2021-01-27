@@ -10,6 +10,8 @@ const state = {
   videoURLObtained: false,
   dataURL: "",
   dataURLObtained: false,
+  expiry: -1,
+  expiryObtained: false,
 };
 
 const store = createStore({

@@ -11,6 +11,8 @@ declare module "@vue/runtime-core" {
     videoURLObtained: false;
     dataURL: "";
     dataURLObtained: false;
+    expiry: -1;
+    expiryObtained: false;
   }
 
   // provide typings for `this.$store`

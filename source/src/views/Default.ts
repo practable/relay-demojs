@@ -1,6 +1,7 @@
 import DisplayConnections from "../components/DisplayConnections.vue";
-import DisplayVideo from "../components/DisplayVideo.vue";
+import DisplayExpiry from "../components/DisplayExpiry.vue";
 import DisplayData from "../components/DisplayData.vue";
+import DisplayVideo from "../components/DisplayVideo.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -9,6 +10,7 @@ export default defineComponent({
     "display-connections": DisplayConnections,
     "display-video": DisplayVideo,
     "display-data": DisplayData,
+    "display-expiry": DisplayExpiry,
   },
   computed: {
     id: function (): string | string[] {
@@ -26,6 +28,12 @@ export default defineComponent({
     dataStream: function (): object {
       return this.$store.getters.getStream("data");
     },
+    exp: function (): bigint {
+      return this.$store.getters.getExpiry;
+    },
+    expObtained: function (): boolean {
+      return this.$store.getters.getExpiryObtained;
+    },
   },
   mounted() {
     if (this.streamsObtained) {
@@ -38,8 +46,15 @@ export default defineComponent({
 
       this.$store.commit("setStreams", decodedStreams);
     } catch (e) {
-      console.log("error decoding streams");
+      console.log("error decoding streams", e);
       this.$store.commit("deleteStreams");
+    }
+    try {
+      var exp = this.$route.query.exp;
+      this.$store.commit("setExpiry", exp);
+    } catch (e) {
+      console.log("error obtaining expiry", e);
+      this.$store.commit("deleteExpiry");
     }
   },
   watch: {
