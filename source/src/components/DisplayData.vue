@@ -1,5 +1,5 @@
 <template>
-  <data-element />
+  <data-element v-if="urlOK" :url="url"/>
     {{url}}
 </template>
 

@@ -20,22 +20,6 @@ export default defineComponent({
       return this.$store.getters.getDataURL;
     },
   },
-  methods: {
-    open: function () {
-      console.log("opening data socket");
-      const socket = new WebSocket(this.url);
-      socket.addEventListener("open", function (event) {
-        console.log("data connection open");
-      });
-      socket.addEventListener("message", function (event) {
-        let ele = document.getElementById("data-box");
-        if (ele) {
-          ele.innerHTML += event.data;
-        }
-        console.log("Message from server ", event.data);
-      });
-    },
-  },
   watch: {
     streamOK(is: boolean, was: boolean) {
       if (is) {
@@ -53,7 +37,6 @@ export default defineComponent({
     urlOK(is: boolean, was: boolean) {
       if (is) {
         console.log("get dataURL", this.urlOK, this.url);
-        this.open();
       }
     },
   },
