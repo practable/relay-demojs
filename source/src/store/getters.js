@@ -17,3 +17,5 @@ export const getStream = (state, what) => {
 };
 export const getVideoURL = (state) => state.videoURL;
 export const getVideoURLObtained = (state) => state.videoURLObtained;
+export const getDataURL = (state) => state.dataURL;
+export const getDataURLObtained = (state) => state.dataURLObtained;

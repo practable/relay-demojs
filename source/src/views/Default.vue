@@ -1,8 +1,18 @@
 <template>
-<h1> Connection diagnostics </h1>
-<display-connections :streams="decodedStreams"/>
-<display-video :stream="videoStream"/>
-
+  <div class="row">
+	<div class="col">
+      <h1> Connection diagnostics </h1>
+      <display-connections :streams="decodedStreams"/>
+    </div>
+    <div class="col">
+      <h1> Video </h1>
+      <display-video :stream="videoStream"/>
+	</div>
+	<div class="col">
+	  <h1> Data </h1>
+      <display-data :stream="dataStream"/>
+	</div>
+</div>
 </template> 
 
 
