@@ -14,14 +14,11 @@ const routes = [
     name: "about",
     component: About,
   },
-  {
-    path: "/:catchAll(.*)",
-    component: NotFound,
-  },
+  { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory("/ui/debug-1.0/"),
   routes,
 });
 
