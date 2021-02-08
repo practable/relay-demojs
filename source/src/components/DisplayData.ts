@@ -19,20 +19,31 @@ export default defineComponent({
     url: function (): string {
       return this.$store.getters.getDataURL;
     },
+    getConnectionCount: function (): bigint {
+      return this.$store.getters.getConnectionCount;
+    },
+  },
+  methods: {
+    getWebsocketConnection() {
+      var accessURL = this.stream.url;
+      var token = this.stream.token;
+      var store = this.$store;
+      axios
+        .post(accessURL, {}, { headers: { Authorization: token } })
+        .then((response) => {
+          store.commit("setDataURL", response.data.uri);
+        })
+        .catch((err) => console.log(err));
+    },
   },
   watch: {
     streamOK(is: boolean, was: boolean) {
       if (is) {
-        var accessURL = this.stream.url;
-        var token = this.stream.token;
-        var store = this.$store;
-        axios
-          .post(accessURL, {}, { headers: { Authorization: token } })
-          .then((response) => {
-            store.commit("setDataURL", response.data.uri);
-          })
-          .catch((err) => console.log(err));
+        this.getWebsocketConnection();
       }
+    },
+    getConnectionCount(is: bigint, was: bigint) {
+      console.log("connectionCount", is);
     },
     urlOK(is: boolean, was: boolean) {
       if (is) {

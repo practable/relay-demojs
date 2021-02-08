@@ -12,6 +12,13 @@ const state = {
   dataURLObtained: false,
   expiry: -1,
   expiryObtained: false,
+  connectionCount: 0,
+  videoBytes: 0,
+  lastVideoBytes: 0,
+  connectionsMade: 0,
+  connectionsDropped: 0,
+  connectionIsDropped: false,
+  connectionDroppedAt: 0,
 };
 
 const store = createStore({
@@ -19,7 +26,7 @@ const store = createStore({
   getters,
   actions,
   mutations,
-  plugins: [createLogger()],
+  //plugins: [createLogger()],
 });
 
 export default store;
