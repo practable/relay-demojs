@@ -28,6 +28,7 @@ export default defineComponent({
       var accessURL = this.stream.url;
       var token = this.stream.token;
       var store = this.$store;
+      store.commit("deleteDataURL");
       axios
         .post(accessURL, {}, { headers: { Authorization: token } })
         .then((response) => {
@@ -35,6 +36,14 @@ export default defineComponent({
         })
         .catch((err) => console.log(err));
     },
+  },
+  mounted() {
+    var _this = this;
+    var reconnect = function () {
+      console.log("reconnecting to data");
+      _this.getWebsocketConnection();
+    };
+    document.addEventListener("streams:dropped", reconnect);
   },
   watch: {
     streamOK(is: boolean, was: boolean) {
