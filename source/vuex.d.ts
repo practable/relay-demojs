@@ -5,21 +5,18 @@ import { Store } from "vuex";
 declare module "@vue/runtime-core" {
   // declare your own store states
   interface State {
-    streams: [];
-    streamsObtained: false;
-    videoURL: "";
-    videoURLObtained: false;
+    connectionDroppedAt: 0;
+    connectionIsDropped: false;
     dataURL: "";
     dataURLObtained: false;
     expiry: -1;
     expiryObtained: false;
-    connectionCount: 0;
-    videoBytes: 0;
-    lastVideoBytes: 0;
-    connectionsMade: 0;
-    connectionsDropped: 0;
-    connectionIsDropped: false;
-    connectionDroppedAt: 0;
+    lastVideoCheck: 0;
+    lastVideoWrite: 0;
+    streams: [];
+    streamsObtained: false;
+    videoURL: "";
+    videoURLObtained: false;
   }
 
   // provide typings for `this.$store`

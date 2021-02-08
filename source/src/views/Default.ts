@@ -58,29 +58,26 @@ export default defineComponent({
       this.$store.commit("deleteExpiry");
     }
     var _this = this;
-    var cvb = function (bytes: bigint) {
+    var cvb = function () {
       _this.$store.commit("setLastVideoWrite", dayjs().valueOf()); //milliseconds
     };
 
-    document.addEventListener("jsmpeg:write", function (val: any) {
-      //console.log("setVideoBytes", val.detail.bytes);
-      cvb(val.detail.bytes);
+    document.addEventListener("jsmpeg:write", function () {
+      cvb();
     });
 
     var wd = function () {
+      //watchdog function
       var exp = _this.$store.getters.getExpiry;
 
       if (exp <= dayjs().unix()) {
-        //expired, stop checking
+        //streams expired, stop checking
         var expiredEvent = new Event("streams:expired");
         document.dispatchEvent(expiredEvent);
         return;
       }
 
-      //var cb = _this.$store.getters.getVideoBytes;
-      //var lb = _this.$store.getters.getLastVideoBytes;
       var lc = _this.$store.getters.getLastVideoCheck;
-
       var lw = _this.$store.getters.getLastVideoWrite;
 
       var dropped = function () {
@@ -88,9 +85,8 @@ export default defineComponent({
         _this.$store.commit("setConnectionDroppedAt", dayjs().unix()); //seconds
         var reconnectEvent = new Event("streams:dropped");
         document.dispatchEvent(reconnectEvent);
-        console.log("******************connection dropped**************");
       };
-      console.log("last check", lc, "last write", lw);
+
       if (lc > lw) {
         // no write since last check
         if (_this.$store.getters.getConnectionIsDropped) {
@@ -109,9 +105,9 @@ export default defineComponent({
         }
         dropped();
       } else {
+        //connection OK
         _this.$store.commit("setLastVideoCheck", dayjs().valueOf()); //milliseconds
         _this.$store.commit("setConnectionIsDropped", false);
-        console.log("connection OK");
       }
     };
 

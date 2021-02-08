@@ -1,12 +1,11 @@
-export const getConnectionCount = (state) => state.connectionCount;
-export const getConnectionsDropped = (state) => state.connectionsDropped;
-export const getConnectionIsDropped = (state) => state.connectionIsDropped;
 export const getConnectionDroppedAt = (state) => state.connectionDroppedAt;
-
-export const getConnectionsMade = (state) => state.connectionsMade;
-
-export const getStreamsObtained = (state) => state.streamsObtained;
-export const getStreams = (state) => state.streams;
+export const getConnectionIsDropped = (state) => state.connectionIsDropped;
+export const getDataURL = (state) => state.dataURL;
+export const getDataURLObtained = (state) => state.dataURLObtained;
+export const getExpiry = (state) => state.expiry;
+export const getExpiryObtained = (state) => state.expiryObtained;
+export const getLastVideoCheck = (state) => state.lastVideoCheck;
+export const getLastVideoWrite = (state) => state.lastVideoWrite;
 export const getStream = (state, what) => {
   return (what) => {
     if (!state.streamsObtained) {
@@ -22,13 +21,7 @@ export const getStream = (state, what) => {
     }
   };
 };
-export const getVideoBytes = (state) => state.videoBytes;
-export const getLastVideoBytes = (state) => state.lastVideoBytes;
-export const getLastVideoCheck = (state) => state.lastVideoCheck;
-export const getLastVideoWrite = (state) => state.lastVideoWrite;
+export const getStreams = (state) => state.streams;
+export const getStreamsObtained = (state) => state.streamsObtained;
 export const getVideoURL = (state) => state.videoURL;
 export const getVideoURLObtained = (state) => state.videoURLObtained;
-export const getDataURL = (state) => state.dataURL;
-export const getDataURLObtained = (state) => state.dataURLObtained;
-export const getExpiryObtained = (state) => state.expiryObtained;
-export const getExpiry = (state) => state.expiry;

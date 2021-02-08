@@ -37,20 +37,16 @@ export default defineComponent({
   mounted() {
     var _this = this;
     var reconnect = function () {
-      console.log("reconnecting to video");
       _this.accessVideo();
     };
+    //make second and subsequent connections
     document.addEventListener("streams:dropped", reconnect);
   },
   watch: {
     streamOK(is: boolean, was: boolean) {
       if (is) {
+        // make first connection
         this.accessVideo();
-      }
-    },
-    urlOK(is: boolean, was: boolean) {
-      if (is) {
-        console.log("get videoURL", this.urlOK, this.url);
       }
     },
   },

@@ -4,21 +4,18 @@ import * as actions from "./actions";
 import * as mutations from "./mutations";
 
 const state = {
-  streams: [],
-  streamsObtained: false,
-  videoURL: "",
-  videoURLObtained: false,
+  connectionDroppedAt: 0,
+  connectionIsDropped: false,
   dataURL: "",
   dataURLObtained: false,
   expiry: -1,
   expiryObtained: false,
-  connectionCount: 0,
-  videoBytes: 0,
-  lastVideoBytes: 0,
-  connectionsMade: 0,
-  connectionsDropped: 0,
-  connectionIsDropped: false,
-  connectionDroppedAt: 0,
+  lastVideoCheck: 0,
+  lastVideoWrite: 0,
+  streams: [],
+  streamsObtained: false,
+  videoURL: "",
+  videoURLObtained: false,
 };
 
 const store = createStore({

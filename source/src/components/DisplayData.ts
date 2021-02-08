@@ -40,23 +40,16 @@ export default defineComponent({
   mounted() {
     var _this = this;
     var reconnect = function () {
-      console.log("reconnecting to data");
       _this.getWebsocketConnection();
     };
+    //make second and subsequent connections
     document.addEventListener("streams:dropped", reconnect);
   },
   watch: {
     streamOK(is: boolean, was: boolean) {
       if (is) {
+        //make the first connection
         this.getWebsocketConnection();
-      }
-    },
-    getConnectionCount(is: bigint, was: bigint) {
-      console.log("connectionCount", is);
-    },
-    urlOK(is: boolean, was: boolean) {
-      if (is) {
-        console.log("get dataURL", this.urlOK, this.url);
       }
     },
   },
