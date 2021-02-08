@@ -24,6 +24,8 @@ export const getStream = (state, what) => {
 };
 export const getVideoBytes = (state) => state.videoBytes;
 export const getLastVideoBytes = (state) => state.lastVideoBytes;
+export const getLastVideoCheck = (state) => state.lastVideoCheck;
+export const getLastVideoWrite = (state) => state.lastVideoWrite;
 export const getVideoURL = (state) => state.videoURL;
 export const getVideoURLObtained = (state) => state.videoURLObtained;
 export const getDataURL = (state) => state.dataURL;

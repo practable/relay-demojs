@@ -59,7 +59,7 @@ export default defineComponent({
     }
     var _this = this;
     var cvb = function (bytes: bigint) {
-      _this.$store.commit("setVideoBytes", bytes);
+      _this.$store.commit("setLastVideoWrite", dayjs().valueOf()); //milliseconds
     };
 
     document.addEventListener("jsmpeg:write", function (val: any) {
@@ -77,17 +77,22 @@ export default defineComponent({
         return;
       }
 
-      var cb = _this.$store.getters.getVideoBytes;
-      var lb = _this.$store.getters.getLastVideoBytes;
+      //var cb = _this.$store.getters.getVideoBytes;
+      //var lb = _this.$store.getters.getLastVideoBytes;
+      var lc = _this.$store.getters.getLastVideoCheck;
+
+      var lw = _this.$store.getters.getLastVideoWrite;
+
       var dropped = function () {
         _this.$store.commit("setConnectionIsDropped", true);
-        _this.$store.commit("setConnectionDroppedAt", dayjs().unix());
+        _this.$store.commit("setConnectionDroppedAt", dayjs().unix()); //seconds
         var reconnectEvent = new Event("streams:dropped");
         document.dispatchEvent(reconnectEvent);
         console.log("******************connection dropped**************");
       };
-      console.log("counts", cb, lb);
-      if (cb <= lb) {
+      console.log("last check", lc, "last write", lw);
+      if (lc > lw) {
+        // no write since last check
         if (_this.$store.getters.getConnectionIsDropped) {
           var when = _this.$store.getters.getConnectionDroppedAt;
           var since = dayjs().unix() - when;
@@ -102,12 +107,9 @@ export default defineComponent({
           }
           return;
         }
-        // handle the drop, zero counters to match new connection
-        _this.$store.commit("setVideoBytes", 0);
-        _this.$store.commit("setLastVideoBytes", 0);
         dropped();
       } else {
-        _this.$store.commit("setLastVideoBytes", cb);
+        _this.$store.commit("setLastVideoCheck", dayjs().valueOf()); //milliseconds
         _this.$store.commit("setConnectionIsDropped", false);
         console.log("connection OK");
       }

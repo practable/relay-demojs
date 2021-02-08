@@ -31,8 +31,16 @@ export const setVideoBytes = (state, bytes) => {
   state.videoBytes = bytes;
 };
 
+export const setLastVideoWrite = (state, when) => {
+  state.lastVideoWrite = when;
+};
+
 export const setLastVideoBytes = (state, bytes) => {
   state.lastVideoBytes = bytes;
+};
+
+export const setLastVideoCheck = (state, when) => {
+  state.lastVideoCheck = when;
 };
 
 export const setVideoURL = (state, url) => {
