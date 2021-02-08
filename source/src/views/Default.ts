@@ -62,7 +62,7 @@ export default defineComponent({
       _this.$store.commit("setVideoBytes", bytes);
     };
 
-    document.addEventListener("videoWrite", function (val: any) {
+    document.addEventListener("jsmpeg:write", function (val: any) {
       //console.log("setVideoBytes", val.detail.bytes);
       cvb(val.detail.bytes);
     });
@@ -86,7 +86,7 @@ export default defineComponent({
         document.dispatchEvent(reconnectEvent);
         console.log("******************connection dropped**************");
       };
-
+      console.log("counts", cb, lb);
       if (cb <= lb) {
         if (_this.$store.getters.getConnectionIsDropped) {
           var when = _this.$store.getters.getConnectionDroppedAt;
@@ -102,12 +102,14 @@ export default defineComponent({
           }
           return;
         }
-        // handle the drop
+        // handle the drop, zero counters to match new connection
+        _this.$store.commit("setVideoBytes", 0);
+        _this.$store.commit("setLastVideoBytes", 0);
         dropped();
       } else {
         _this.$store.commit("setLastVideoBytes", cb);
         _this.$store.commit("setConnectionIsDropped", false);
-        //console.log("connection OK");
+        console.log("connection OK");
       }
     };
 
