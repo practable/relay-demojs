@@ -6,7 +6,10 @@ export const getExpiry = (state) => state.expiry;
 export const getExpiryObtained = (state) => state.expiryObtained;
 export const getLastConnectionCheck = (state) => state.lastConnectionCheck;
 export const getLastDataWrite = (state) => state.lastDataWrite;
+export const getLastMessage = (state) => state.lastMessage;
 export const getLastVideoWrite = (state) => state.lastVideoWrite;
+export const getMessageCount = (state) => state.messageCount;
+export const getMessageHistory = (state) => state.messageHistory;
 export const getStream = (state, what) => {
   return (what) => {
     if (!state.streamsObtained) {

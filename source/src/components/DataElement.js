@@ -25,6 +25,7 @@ export default defineComponent({
     },
   },
   mounted() {
+    var _this = this;
     this.connection = new WebSocket(this.url);
     console.log("opening data socket");
     this.connection.addEventListener("open", function (event) {
@@ -34,8 +35,28 @@ export default defineComponent({
       var dataEvent = new Event("data:write");
       document.dispatchEvent(dataEvent);
       let ele = document.getElementById("data-box");
+      var lm = _this.$store.getters.getLastMessage;
+      var mh = _this.$store.getters.getMessageHistory;
+      var mc = _this.$store.getters.getMessageCount;
+      console.log(event.data);
+      if (lm === event.data) {
+        //repeat message
+        //console.log("repeat message", event.data, mc);
+        mc++;
+        _this.$store.commit("setMessageCount", mc);
+        mh += "<br>" + lm + " ×" + mc.toString();
+      } else {
+        //new message
+        //console.log("new message", event.data);
+        _this.$store.commit("setLastMessage", event.data);
+        _this.$store.commit("setMessageCount", 1);
+        mh += "<br>" + lm + " ×" + mc.toString();
+        _this.$store.commit("setMessageHistory", mh);
+        mh += "<br>" + event.data;
+      }
+
       if (ele) {
-        ele.innerHTML = event.data;
+        ele.innerHTML = mh;
       }
     });
   },
