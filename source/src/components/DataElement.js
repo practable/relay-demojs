@@ -35,7 +35,7 @@ export default defineComponent({
       document.dispatchEvent(dataEvent);
       let ele = document.getElementById("data-box");
       if (ele) {
-        ele.innerHTML = event.data;
+        ele.innerHTML += event.data + "<br>";
       }
     });
   },
