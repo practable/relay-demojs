@@ -46,6 +46,18 @@ export const setLastVideoWrite = (state, when) => {
   state.lastVideoWrite = when;
 };
 
+export const setLastMessage = (state, what) => {
+  state.lastMessage = what;
+};
+
+export const setMessageHistory = (state, what) => {
+  state.messageHistory = what;
+};
+
+export const setMessageCount = (state, count) => {
+  state.messageCount = count;
+};
+
 export const setStreams = (state, streams) => {
   state.streams = streams;
   state.streamsObtained = true;
