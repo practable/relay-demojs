@@ -31,6 +31,8 @@ export default defineComponent({
       console.log("data connection open");
     });
     this.connection.addEventListener("message", function (event) {
+      var dataEvent = new Event("data:write");
+      document.dispatchEvent(dataEvent);
       let ele = document.getElementById("data-box");
       if (ele) {
         ele.innerHTML = event.data;

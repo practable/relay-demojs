@@ -36,10 +36,12 @@ export const setExpiry = (state, expiry) => {
   state.expiryObtained = true;
 };
 
-export const setLastVideoCheck = (state, when) => {
-  state.lastVideoCheck = when;
+export const setLastConnectionCheck = (state, when) => {
+  state.lastConnectionCheck = when;
 };
-
+export const setLastDataWrite = (state, when) => {
+  state.lastDataWrite = when;
+};
 export const setLastVideoWrite = (state, when) => {
   state.lastVideoWrite = when;
 };

@@ -4,7 +4,8 @@ export const getDataURL = (state) => state.dataURL;
 export const getDataURLObtained = (state) => state.dataURLObtained;
 export const getExpiry = (state) => state.expiry;
 export const getExpiryObtained = (state) => state.expiryObtained;
-export const getLastVideoCheck = (state) => state.lastVideoCheck;
+export const getLastConnectionCheck = (state) => state.lastConnectionCheck;
+export const getLastDataWrite = (state) => state.lastDataWrite;
 export const getLastVideoWrite = (state) => state.lastVideoWrite;
 export const getStream = (state, what) => {
   return (what) => {
